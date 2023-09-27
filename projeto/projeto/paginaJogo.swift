@@ -1,17 +1,17 @@
+
 import SwiftUI
 
-struct ContentView: View {
+struct paginaJogo: View {
+    @State private var apresentaPopUp = false
     let verdeAmarelo = Color("verdeAmarelo")
     let verdeFundo = Color("verdeFundo")
-    let Marrom = Color("Marrom")
-    
+    let botao = Color("botao")
+
     var body: some View {
-        NavigationView {
-            ZStack {
-                verdeFundo
-                    .edgesIgnoringSafeArea(.all)
-                
-                VStack {
+        ZStack{
+            verdeFundo
+                .edgesIgnoringSafeArea(.all)
+            VStack {
                     VStack{
                     
                     Rectangle()
@@ -82,13 +82,11 @@ struct ContentView: View {
                     }
                     
                     Spacer()
-                }
             }
         }
     }
-}
-struct ContentView_Previews: PreviewProvider {
+struct paginaJogo_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        paginaJogo()
     }
 }
