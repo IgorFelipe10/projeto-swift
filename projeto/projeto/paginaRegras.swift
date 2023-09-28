@@ -10,10 +10,22 @@ struct paginaRegras: View {
             verdeFundo
                 .edgesIgnoringSafeArea(.all)
             
+            
             VStack(spacing: 20) {
+                VStack {
+                    Rectangle()
+                        .frame(width: .infinity, height: 100)
+                        .foregroundColor(verdeAmarelo)
+                        .shadow(radius: 5)
+                        .overlay(){
+                            Image("Abidle")
+                                .shadow(radius: 4, x:0, y:4)
+                        }  .ignoresSafeArea()
+                }
+                Spacer()
                 Rectangle()
                     .frame(width: 320, height: 480)
-                    .border(Color.brown, width: 2)
+                    .border(Color.black, width: 2)
                     .cornerRadius(25)
                     .foregroundColor(verdeAmarelo)
                     .overlay(
@@ -48,6 +60,8 @@ struct paginaRegras: View {
                         }
                         .padding()
                     )
+                Spacer()
+                Spacer()
                 
             }
         }
