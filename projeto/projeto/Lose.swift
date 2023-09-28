@@ -1,67 +1,94 @@
-//
-//  Lose.swift
-//  projeto-tela2
-//
-//  Created by Student on 26/09/23.
-//
-
 import SwiftUI
 
 struct Lose: View {
     let verdeAmarelo = Color("verdeAmarelo")
     let verdeFundo = Color("verdeFundo")
-    let Marrom = Color("Marrom")
+    let marrom = Color("marrom")
+    
+    @State private var showingContentView = false
     
     var body: some View {
-        ZStack {
-            verdeFundo
-                .edgesIgnoringSafeArea(.all)
-            
-            VStack {
-                VStack{
-                    
-                    Rectangle()
-                        .frame(width: .infinity, height: 100)
-                        .foregroundColor(verdeAmarelo)
-                        .overlay(){
-                            Text("Abidle").font(.custom("JockeyOne-Regular", size: 48)).foregroundColor(Marrom)
-                                .shadow(radius: 4, x:0, y:4)
-                        }  .ignoresSafeArea()
-                    Spacer()
-                    VStack {
-                        Text("Você perdeu!")
-                            .font(.custom("JockeyOne-Regular", size: 35))
-                            .foregroundColor(.white)
-                            .shadow(radius: 20)
-                        Text("Pontos: 000000")
-                            .font(.custom("JockeyOne-Regular", size: 30))
-                            .foregroundColor(.white)
-                            .shadow(radius: 20)
+        NavigationView {
+            ZStack {
+                verdeFundo
+                    .edgesIgnoringSafeArea(.all)
+                
+                VStack {
+                    VStack{
+                        
                         Rectangle()
-                            .frame(width: 200, height: 40)
-                            .foregroundColor(Marrom)
-                            .shadow(color: Color.black, radius: 2, x: 0, y: 2)
-                            .padding(.bottom, 10)
-                            .overlay(
-                                Text("Voltar ao início")
-                                    .font(.custom("JockeyOne-Regular", size:22))
+                            .frame(width: .infinity, height: 100)
+                            .foregroundColor(verdeAmarelo)
+                            .shadow(radius: 5)
+                            .overlay(){
+                                Image("Abidle")
+                                    .shadow(radius: 4, x:0, y:4)
+                            }  .ignoresSafeArea()
+                        VStack(spacing: 0) {
+                            Text("Você perdeu!")
+                                .font(.custom("JockeyOne-Regular", size: 40))
+                                .foregroundColor(.white)
+                                .shadow(radius: 20)
+                            Text("As bananas foram")
+                                .font(.custom("JockeyOne-Regular", size: 35))
+                                .foregroundColor(.white)
+                                .shadow(radius: 20)
+                            
+                            HStack {
+                                Text("perdidas!")
+                                    .font(.custom("JockeyOne-Regular", size: 35))
                                     .foregroundColor(.white)
-                                    .padding(.bottom))
-                            .padding(.bottom, 20)
-                        Image("Elef")
-                            .resizable()
-                            .scaledToFit()
-                            .shadow(radius: 10)
+                                    .shadow(radius: 20)
+                                Image("Banana")
+                                    .resizable()
+                                    .frame(width: 40, height: 40)
+                                    .scaledToFill()
+                            }
+                            Spacer()
+                            Button(action: {
+                                showingContentView.toggle()
+                            }) {
+                                // Este botão abrirá ContentView em tela cheia
+                                ZStack {
+                                                            Rectangle()
+                                                                .fill(marrom)
+                                                            
+                                                            Rectangle()
+                                                                .strokeBorder(Color(.black), lineWidth: 2)
+                                                        }
+                                                        .compositingGroup()
+                                                        .frame(width: 214, height: 43)
+                                                        .shadow(radius:4, x:0, y:4)
+                                                        .padding(.bottom, 10)
+                                                        .overlay(
+                                                            Text("Voltar ao início")
+                                                                .font(.custom("JockeyOne-Regular", size:22))
+                                                                .foregroundColor(.white)
+                                                                .padding(.bottom))
+                                                        .padding(.bottom, 10)
+                                                        
+                                                        
+                                                    }
+                            .fullScreenCover(isPresented: $showingContentView) {
+                                ContentView()
+                            }
+                            
+                            VStack(spacing: 0){
+                                Image("macacoThink")
+                                    .resizable()
+                                    .frame(width: 340, height: 320)
+                            }
+                        }
+                        Spacer()
                     }
-                    Spacer()
                 }
             }
         }
     }
-    
-    struct Lose_Previews: PreviewProvider {
-        static var previews: some View {
-            Lose()
-        }
+}
+struct Lose_Previews: PreviewProvider {
+    static var previews: some View {
+        Lose()
     }
 }
+
