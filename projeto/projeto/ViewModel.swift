@@ -9,15 +9,16 @@ import Foundation
 struct Animal: Identifiable, Decodable {
     let id  : Int?
     let nome: String?
-    let nome_c: String?
+    let nomec: String?
     let local: String?
     let dieta: String?
     let cor: String?
     let peso: String?
     let altura: String?
-    let tempo_vida: String?
+    let tempovida: String?
     let populacao: String?
     let periodo: String?
+    let url: String?
 }
 
 
